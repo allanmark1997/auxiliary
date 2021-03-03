@@ -9,4 +9,9 @@ if (!$conn) {
 
 	die ("Connection failed:".mysqli_error($conn));
 }
+<<<<<<< HEAD
   ?>
+=======
+  ?>
+  test test test
+>>>>>>> 9de65350834c8215ddd20d52461bf9bdd4e2bc10
