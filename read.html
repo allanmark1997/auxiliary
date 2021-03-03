@@ -1,0 +1,254 @@
+<script src="js/jquery-3.4.1.min.js"></script>
+  <script>
+  $(document).ready(function()
+  {
+      $.ajax({
+        url:'trigger/sessionID.php',
+        method: 'POST',
+        success:function(data){
+          if (data==="noUserID") {
+            location.href = "index.html";
+          }
+        }
+      });  
+  });
+</script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Central Mindanao University</title>
+  <!-- Font Awesome 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  -->
+<!-- header logo -->
+<link rel="icon" href="Central_Mindanao_University_logo.png" type="image/x-icon">
+
+
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+<link rel="stylesheet" href="sweetAlert/dist/sweetalert2.min.css">
+
+  
+  <style>
+        .top-nav-collapse {
+            background-color: yellow !important;
+        }
+        .navbar:not(.top-nav-collapse) {
+            background: white !important;
+        }
+        @media (max-width: 768px) {
+            .navbar:not(.top-nav-collapse) {
+                background: green  !important;
+            }
+        }
+        @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: green  !important;
+            }
+        }
+
+        .card {
+            background-color: rgba(229, 228, 255, 0.2);
+        }
+        .md-form label {
+            color: #ffffff;
+        }
+        body{
+           background: url("background/awesome-water-background-1.jpg")no-repeat center center;
+            background-size: cover;
+            text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+        }
+      
+
+
+  </style>
+  <style type="text/css">
+  input[type=number] {
+  width: 300px;
+  padding: 5px;
+  margin: 1px 0 0px 0;
+  display: inline-table;
+  font-size: 60px;
+  font-family: times new roman;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  color: black;
+}
+#modalReading{
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: white;
+}
+#readText{
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: white;
+}
+</style>
+</head>
+
+<body class="fixed-sn white-skin">
+
+  <!-- Main Navigation  -->
+  <header>
+
+    <!-- Sidebar navigation 
+    including background photo
+    -->
+    <div id="slide-out" class="side-nav fixed">
+      <ul class="custom-scrollbar">
+
+        <!-- Logo -->
+        <li class="logo-sn waves-effect py-3">
+        </li>
+        <!-- Side navigation links -->
+        <li>
+          <ul class="collapsible collapsible-accordion">
+                <ul>
+                  <li>
+                    <a href="v-1.html" class="waves-effect"><b><i class="w-fa fas fa-tachometer-alt"></i>Dashboard</b></a><br>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <a href="read.html" class="waves-effect"><b><i class="w-fa fas fa-table"></i>Reading</b></a><br>
+                  </li>
+                </ul>
+           
+        <!-- Side navigation links -->  
+      </ul>
+      <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!-- Sidebar navigation -->
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav">
+
+      <!-- SideNav slide-out button -->
+      <div class="float-left">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
+      </div>
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb-dn mr-auto">
+        <p><b><strong>Meter Reading</strong></b></p>
+      </div>
+
+    </nav>
+
+  </header>
+  <!-- Main layout -->
+  <main>
+    <div class="container-fluid">
+
+
+<section class="mt-md-10 pt-md-2 mb-5 pb-6">
+    <div class="container-fluid dark-text font-weight-bold " id="loadReadings">
+      
+</div>
+
+<script>
+function showHint(str) {
+    if (str.length == 0) { 
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "trigger/activeMeters.php?q=" + str, true);
+        xmlhttp.send();
+    }
+}
+</script>
+
+<section class="mt-md-10 pt-md-2 mb-5 pb-6"> 
+  <div class="row " align="center">
+         <div class="card-body">
+          <h5 class="my-4 dark-text font-weight-bold " >Enter a Meter</h5>
+            <div class="text-center my-4 dark-text font-weight-bold">
+              <div class="md-form " align="center">
+                    <input type="number" id="txtMeter" autofocus="" onkeyup="showHint(this.value)">
+              </div>
+                    <button class="btn btn-info mb-2" id="btnEnterMeter">Search<i class="fas fa-paper-plane ml-1"></i></button>
+                  <p>Suggestions: <span id="txtHint"></span></p>
+                   <div class="col-lg-12 col-md-10 mb-5"id="loadSearch"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+  <section class="mt-md-10 pt-md-2 mb-5 pb-6"> 
+  <div class="row " align="center">
+      <div class="col-lg-12 col-md-10 mb-5"></div>
+    </div>
+  </section><section class="mt-md-10 pt-md-2 mb-5 pb-6"> 
+  <div class="row " align="center">
+      <div class="col-lg-12 col-md-10 mb-5"></div>
+      </div>
+    </div>
+  </section>
+</div>
+  </main>
+
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+
+  <!-- Initializations -->
+  <script>
+    // SideNav Initialization
+    $(".button-collapse").sideNav();
+  </script>
+<script>
+    new WOW().init();
+
+  </script>
+<script src="sweetAlert/dist/sweetalert2.min.js"> </script>
+
+  <!-- Charts -->
+<script>
+  $(document).ready(function(e){
+    $("#btnEnterMeter").click(function(e){
+      var meter = document.getElementById("txtMeter").value;
+
+      if (meter === "") {
+        Swal.fire({
+                    icon: 'warning',
+                    title: 'Invalid',
+                    text: 'Please fill out all fields, Thank you',
+                    showConfirmButton: true
+                  });
+      }
+      else{
+        $.ajax({
+        url:'trigger/loadSearchReading.php',
+        method: 'POST',
+        data: {meter:meter},
+        success :  function(loadSearch){
+             
+               $('#loadSearch').empty();
+              $("#loadSearch").html(loadSearch);
+             
+           }
+        
+      }); 
+      }
+
+    });
+  });
+</script>
+</body>
+
+</html>

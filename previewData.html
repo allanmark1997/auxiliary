@@ -1,0 +1,170 @@
+<script src="js/jquery-3.4.1.min.js"></script>
+  <script>
+  $(document).ready(function()
+  {
+      $.ajax({
+        url:'trigger/sessionID.php',
+        method: 'POST',
+        success:function(data){
+          if (data==="noUserID") {
+            location.href = "index.html";
+          }
+        }
+      });  
+  });
+</script>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Central Mindanao University
+          University Town, Musuan,
+            Maramag, Bukidnon</title>
+  <!-- Font Awesome <link rel="stylesheet" href="css/all.css"> -->
+  
+
+<!-- header logo -->
+<link rel="icon" href="Central_Mindanao_University_logo.png" type="image/x-icon">
+
+  
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+
+<link rel="stylesheet" href="sweetAlert/dist/sweetalert2.min.css">
+
+
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+
+    .map-container{
+overflow:hidden;
+padding-bottom:56.25%;
+position:relative;
+height:0;
+}
+.map-container iframe{
+left:0;
+top:0;
+height:100%;
+width:100%;
+position:absolute;
+}
+</style>
+  <style>
+body{
+           background: url("background/awesome-water-background-1.jpg")no-repeat center center;
+            background-size: cover;
+        }
+  </style>
+</head>
+
+<body class="fixed-sn white-skin">
+
+  <!-- Main Navigation -->
+  <header>
+
+    <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav fixed">
+      <ul class="custom-scrollbar">
+
+        <li class="logo-sn waves-effect py-3">
+        </li>
+
+        <!-- Side navigation links -->
+        <li>
+          <ul class="collapsible collapsible-accordion">
+
+            <li>
+              <ul>
+                  <li>
+                    <a href="v-1.html" class="waves-effect"><b><i class="w-fa fas fa-tachometer-alt"></i>Dashboard</b></a><br>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <a href="read.html" class="waves-effect"><b><i class="w-fa fas fa-table"></i>Reading</b></a>
+                  </li>
+                </ul>
+           
+        
+      <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!-- Sidebar navigation -->
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav">
+
+      <!-- SideNav slide-out button -->
+      <div class="float-left">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
+      </div>
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb-dn mr-auto">
+        <p><strong><b>Meter Reading</b></strong></p>
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+  </header>
+  <!-- Main Navigation -->
+
+  <!-- Main layout -->
+  <main>
+    <section class="mt-md-10 pt-md-2 mb-5 pb-6"> 
+    <div class="container-fluid">
+      <div class="center">
+        <div class="col-xl-6 col-lg-4 col-md-5 col-sm-12 mx-auto mt-lg-5">
+          <div class="card" id="loadResult">Loading...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+   
+</main>
+
+  <script src="sweetAlert/dist/sweetalert2.min.js"> </script>
+ 
+<script src="js/jquery-3.4.1.min.js"></script>
+
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!--Custom scripts -->
+  <script>
+    // SideNav Initialization
+    $(".button-collapse").sideNav();
+
+  </script>
+  <script>
+    $(document).ready(function(){
+      $.ajax({
+        url:'trigger/loadResult.php',
+        method: 'POST',
+        success :  function(loadResult){
+             
+               $('#loadResult').empty();
+              $("#loadResult").html(loadResult);
+             
+           }
+        
+      }); 
+    });
+  </script>
+
+</body>
+
+</html>
